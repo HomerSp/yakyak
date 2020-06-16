@@ -68,7 +68,7 @@ handle 'update:viewstate', ->
     # STATE_NORMAL  : conversation list on left with selected chat showing in main window
     # STATE_ABOUT   : conversation list on the left with about showing in main window
     # STATE_ADD_CONVERSATION : conversation list on the left and new / modify conversation on the main window
-    if viewstate.state == viewstate.STATE_STARTUP
+    if viewstate.state == viewstate.STATE_STARTUP_WINDOW
         if Array.isArray viewstate.size
             later -> remote.getCurrentWindow().setSize viewstate.size...
         #
@@ -130,7 +130,12 @@ handle 'update:viewstate', ->
                 yWindowPos = maxY if yWindowPos > maxH
                 xWindowPos = Math.max(xWindowPos, maxX)
                 yWindowPos = Math.max(yWindowPos, maxY)
+            viewstate.pos = null
             later -> remote.getCurrentWindow().setPosition(xWindowPos, yWindowPos)
+
+        viewstate.state = viewstate.STATE_STARTUP
+
+    if viewstate.state == viewstate.STATE_STARTUP
         # only render startup
         startup(models)
 

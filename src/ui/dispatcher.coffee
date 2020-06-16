@@ -19,7 +19,7 @@ handle 'alive', (time) -> connection.setLastActive time
 handle 'reqinit', ->
     ipc.send 'reqinit'
     connection.setState connection.CONNECTING
-    viewstate.setState viewstate.STATE_STARTUP
+    viewstate.setState viewstate.STATE_STARTUP_WINDOW
 
 module.exports =
     init: ({init}) -> action 'init', init

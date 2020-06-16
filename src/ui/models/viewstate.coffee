@@ -5,6 +5,7 @@ merge   = (t, os...) -> t[k] = v for k,v of o when v not in [null, undefined] fo
 {throttle, later, tryparse, autoLauncher} = require '../util'
 
 STATES =
+    STATE_STARTUP_WINDOW: 'startup_window'
     STATE_STARTUP: 'startup'
     STATE_NORMAL: 'normal'
     STATE_ADD_CONVERSATION: 'add_conversation'
